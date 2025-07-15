@@ -25,6 +25,11 @@ class Audi: Car {
         self.acceleration = acceleration
         super.init(brand: "Audi", model: model, year: year)
     }
+    
+    override func printInfo() {
+            super.printInfo()
+            print("ускорение: \(acceleration) сек до 100 км/ч")
+        }
 }
     
 class Lamborghini: Car {
@@ -36,6 +41,11 @@ class Lamborghini: Car {
         self.fuelFlow = fuelFlow
         super.init(brand: "Lamborghini", model: model, year: year)
     }
+    
+    override func printInfo() {
+            super.printInfo()
+            print("мощность двигателя: \(enginePower), расход топлива: \(fuelFlow)")
+        }
 }
     
 class Maserati: Car {
@@ -45,6 +55,11 @@ class Maserati: Car {
         self.numberOfHousepower = numberOfHousepower
         super.init(brand: "Maserati", model: model, year: year)
     }
+    
+    override func printInfo() {
+            super.printInfo()
+            print("количество лошадиных сил: \(numberOfHousepower)")
+        }
 }
     
 class BMW: Car {
@@ -53,6 +68,11 @@ class BMW: Car {
         self.batteryRange = batteryRange
         super.init(brand: "BMW", model: model, year: year)
     }
+    
+    override func printInfo() {
+            super.printInfo()
+            print("запас хода: \(batteryRange) км")
+        }
 }
     
     
@@ -67,32 +87,35 @@ func createCars() -> [Car] {
         Maserati(model: "Levante", year: 2022, numberOfHousepower: 350),
         Maserati(model: "Ghibli", year: 2023, numberOfHousepower: 450),
         BMW(model: "M5", year: 2022, batteryRange: 600),
-        BMW(model: "X6", year: 2021, batteryRange: 700),
+        BMW(model: "X6", year: 2021, batteryRange: 700)
     ]
 }
     
     //4 задание - метод для организации гонок
 func raceBetween(_ car1: Car, _ car2: Car) -> Car {
-    print("гонка: \(car1.brand) \(car1.model) VS \(car2.brand) \(car2.model)")
+    print("\nгонка: \(car1.brand) \(car1.model) VS \(car2.brand) \(car2.model)")
     let winner = car1.year >= car2.year ? car1 : car2
-    print("победитель: \(winner.brand) \(winner.model)\n")
+    print("победитель: \(winner.brand) \(winner.model)")
     return winner
 }
     
     //5 задание - гонки
 func startTournament() {
-    var cars = createCars().shuffled()
+    let cars = createCars()
     var winners: [Car] = []
-        
-    for i in stride(from: 0, to: cars.count, by: 2) {
-        let car1 = cars[i]
-        let car2 = cars[i+1]
-        winners.append(raceBetween(car1, car2))
+    
+    guard cars.count % 2 == 0 else {
+        print("ошибка: количество автомобилей нечетное")
+        return
     }
-        
-    print("финалисты:")
-    for car in winners {
-        car.printInfo()
+    
+    for i in stride(from: 0, to: cars.count, by: 2) {
+        winners.append(raceBetween(cars[i], cars[i+1]))
+    }
+    
+    if let finalWinner = winners.max(by: { $0.year < $1.year }) {
+        print("\n общий победитель турнира:")
+        finalWinner.printInfo()
     }
 }
 
