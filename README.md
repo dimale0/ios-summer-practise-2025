@@ -1,10 +1,6 @@
 Homework 1
 Screencast: screencast_hw1.mp4
 
-Homework 2
-Screencast: screencast_hw2.mp4
-
-
 
 
 
