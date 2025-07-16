@@ -1,3 +1,25 @@
+Homework 1
+Screencast: screencast_hw1.mp4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ios-summer-practise-2025
 
 # Как сдавать домашнюю работу
